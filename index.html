@@ -1,544 +1,793 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hCoder786 - Full Stack Developer</title>
+    <title>Er. Anil Kumar - Full Stack Developer Portfolio</title>
+    <meta name="description" content="Portfolio of Er. Anil Kumar - Full Stack Developer and Java Specialist with BCA degree and 1.5 years industrial training">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --background: #ffffff;
+            --foreground: #0f172a;
+            --muted: #f8fafc;
+            --muted-foreground: #64748b;
+            --border: #e2e8f0;
+            --card: #ffffff;
+            --card-foreground: #0f172a;
         }
-        
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 1rem;
         }
-        /* Header Styles */
-        
-        header {
-            text-align: center;
-            padding: 60px 0;
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
         }
-        
-        header h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        header h3 {
-            font-size: 1.5rem;
-            color: #444;
-            margin-bottom: 10px;
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        .header-stats {
+
+        .nav {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
         }
-        
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--muted);
+            color: var(--muted-foreground);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .name {
+            color: var(--primary);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        .hero .description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--foreground);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--muted);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .stat {
             text-align: center;
         }
-        
+
         .stat-number {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
-        
+
         .stat-label {
-            font-size: 0.9rem;
-            color: #666;
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
         }
-        /* Section Styles */
-        
-        section {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
         }
-        
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-        
-        h2 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            color: #333;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-        /* About Section */
-        
-        .about-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-        /* Skills Section */
-        
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .skill-item {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 50px;
+
+        .section-title {
             text-align: center;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            margin-bottom: 4rem;
         }
-        
-        .skill-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-        /* Projects Section */
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .project-card {
-            background: #f8f9ff;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-title {
-            font-size: 1.3rem;
+
+        .section-title h2 {
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
-        
-        .project-desc {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
+
+        .section-divider {
+            width: 5rem;
+            height: 4px;
+            background: var(--primary);
+            margin: 0 auto 2rem;
         }
-        
-        .project-tech {
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* About Section */
+        .about {
+            background: var(--background);
+        }
+
+        .about-content {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-list {
+            list-style: none;
+        }
+
+        .education-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .bullet {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--muted);
+        }
+
+        .skill-category h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 0.5rem;
         }
-        
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--background);
+            color: var(--foreground);
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            border: 1px solid var(--border);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--muted);
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--muted-foreground);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
         .tech-tag {
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 1rem;
+            font-size: 0.875rem;
         }
-        /* Services Section */
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .service-card {
-            text-align: center;
-            padding: 30px 20px;
-            background: #f8f9ff;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .service-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .service-desc {
-            color: #666;
-            line-height: 1.6;
-        }
+
         /* Contact Section */
-        
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        .contact {
+            background: var(--background);
         }
-        
+
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: #f8f9ff;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
         }
-        
-        .contact-item:hover {
-            transform: translateX(10px);
-        }
-        
+
         .contact-icon {
-            font-size: 1.5rem;
-            color: #667eea;
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
         }
-        
-        .contact-details h3 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-        
-        .contact-details p {
-            color: #666;
-            margin: 0;
-        }
-        /* CTA Section */
-        
-        .cta-section {
-            text-align: center;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 20px;
-            margin-top: 30px;
-        }
-        
-        .cta-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
-        }
+
         /* Footer */
-        
-        footer {
+        .footer {
+            background: var(--foreground);
+            color: white;
             text-align: center;
-            padding: 30px 0;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+            padding: 2rem 0;
         }
+
         /* Responsive */
-        
         @media (max-width: 768px) {
-            header h1 {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
                 font-size: 2.5rem;
             }
-            .header-stats {
-                gap: 20px;
+
+            .hero .subtitle {
+                font-size: 1.25rem;
             }
-            section {
-                padding: 25px;
-            }
-            h2 {
-                font-size: 1.8rem;
-            }
-            .cta-title {
+
+            .section-title h2 {
                 font-size: 2rem;
             }
-        }
-        /* Animation */
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
-        
-        section {
-            animation: fadeInUp 0.6s ease forwards;
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
+<body class="smooth-scroll">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">HCoder786</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<body>
-    <div class="container">
-        <header>
-            <h1>HCoder786</h1>
-            <h3>Er. Anil Kumar</h3>
-            <p>Full Stack Developer | UI/UX Designer | Digital Solutions Expert</p>
-            <div class="header-stats">
-                <div class="stat">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Client Satisfaction</div>
-                </div>
-            </div>
-        </header>
-
-        <section>
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>
-                    I'm a passionate Full Stack Developer with 3+ years of experience creating stunning, high-performance web applications. I specialize in modern technologies and deliver pixel-perfect, responsive websites that drive business growth.
-                </p>
-                <p>
-                    My expertise spans from frontend development with React and modern CSS frameworks to backend development with Node.js and database management. I'm committed to writing clean, maintainable code and delivering projects on time and within budget.
-                </p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Technical Skills</h2>
-            <div class="skills">
-                <div class="skill-item">HTML5 & CSS3</div>
-                <div class="skill-item">JavaScript ES6+</div>
-                <div class="skill-item">React.js</div>
-                <div class="skill-item">Next.js</div>
-                <div class="skill-item">Node.js</div>
-                <div class="skill-item">Express.js</div>
-                <div class="skill-item">MongoDB</div>
-                <div class="skill-item">MySQL</div>
-                <div class="skill-item">Tailwind CSS</div>
-                <div class="skill-item">Bootstrap</div>
-                <div class="skill-item">Git & GitHub</div>
-                <div class="skill-item">Responsive Design</div>
-                <div class="skill-item">Android Studio</div>
-                <div class="skill-item">Java 8</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">C#</div>
-                <div class="skill-item">ASP.Net</div>
-                <div class="skill-item">Firebase</div>
-                <div class="skill-item">REST APIs</div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Services I Offer</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <div class="service-title">Web Development</div>
-                    <div class="service-desc">Custom websites and web applications built with modern technologies and best practices.</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <div class="service-title">Mobile App Development</div>
-                    <div class="service-desc">Android apps with clean UI & smooth performance built using Android Studio & Firebase.</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <div class="service-title">Performance Optimization</div>
-                    <div class="service-desc">Speed optimization and SEO improvements to boost your website's performance.</div>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🛠️</div>
-                    <div class="service-title">Maintenance & Support</div>
-                    <div class="service-desc">Ongoing maintenance, updates, and technical support for your web projects.</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-title">E-Commerce Platform</div>
-                    <div class="project-desc">
-                        Full-featured online store with shopping cart, payment integration, admin dashboard, and inventory management system.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Stripe</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-title">Restaurant Management System</div>
-                    <div class="project-desc">
-                        Complete restaurant management solution with online ordering, table reservations, and kitchen management features.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Next.js</span>
-                        <span class="tech-tag">Express</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-title">Android Task Manager</div>
-                    <div class="project-desc">
-                        A mobile app to manage daily tasks with notifications, reminders, and Firebase authentication.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Android Studio</span>
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Firebase</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-title">Portfolio Websites</div>
-                    <div class="project-desc">
-                        Custom portfolio websites for professionals and creatives with stunning animations and interactive elements.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">GSAP</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">Framer Motion</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <h2 class="cta-title">Ready to Start Your Project?</h2>
-            <p class="cta-subtitle">
-                Let's discuss your ideas and bring them to life with cutting-edge web & mobile solutions
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="badge">Fresher - Available for Opportunities</div>
+            <h1>Er. <span class="name">Anil Kumar</span></h1>
+            <p class="subtitle">Full Stack Developer & Java Specialist</p>
+            <p class="description">
+                BCA Graduate with 1.5 years of industrial training in Java from Arrow Edutech. 
+                Passionate about creating innovative applications and solving complex problems through code.
             </p>
-            <a href="mailto:kumara2262ajaja@gmail.com" class="cta-button">Get Free Quote</a>
-        </section>
+            
+            <div class="buttons">
+                <a href="#projects" class="btn btn-primary">View My Projects</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
 
-        <section>
-            <h2>Get In Touch</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p>kumara2262ajaja@gmail.com</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">9+</div>
+                    <div class="stat-label">Projects Built</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1.5</div>
+                    <div class="stat-label">Years Training</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">BCA</div>
+                    <div class="stat-label">Graduate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <p class="about-content">
+                        I'm a passionate Full Stack Developer and recent BCA graduate from William Carey University, 
+                        Meghalaya. With 1.5 years of intensive industrial training in Java from Arrow Edutech Pvt Ltd, 
+                        I have developed strong programming skills and a deep understanding of software development.
+                    </p>
+                    <p class="about-content">
+                        My expertise spans multiple programming languages including Java, Python, HTML, CSS, JavaScript, 
+                        and modern frameworks like React and Node.js. I'm passionate about creating applications and 
+                        solving complex problems through innovative coding solutions.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Education & Training</h3>
+                    <ul class="education-list">
+                        <li class="education-item">
+                            <div class="bullet"></div>
+                            <span>BCA Graduate (CGPA: 6.31)</span>
+                        </li>
+                        <li class="education-item">
+                            <div class="bullet"></div>
+                            <span>1.5 Years Java Industrial Training</span>
+                        </li>
+                        <li class="education-item">
+                            <div class="bullet"></div>
+                            <span>Android App Development</span>
+                        </li>
+                        <li class="education-item">
+                            <div class="bullet"></div>
+                            <span>Full Stack Web Development</span>
+                        </li>
+                        <li class="education-item">
+                            <div class="bullet"></div>
+                            <span>Database Management (MySQL, Firebase)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Comprehensive expertise across programming languages, frameworks, and development tools
+                </p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java 8</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">C#</span>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-details">
-                        <h3>Phone</h3>
-                        <p>+91-8219572209</p>
+
+                <div class="card skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Hibernate</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">ASP.NET Core</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">⏰</div>
-                    <div class="contact-details">
-                        <h3>Availability</h3>
-                        <p>Mon - Sat, 9 AM - 8 PM IST</p>
+
+                <div class="card skill-category">
+                    <h3>Database Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Firebase Database</span>
+                        <span class="skill-tag">JDBC</span>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">💬</div>
-                    <div class="contact-details">
-                        <h3>Response Time</h3>
-                        <p>Within 2-4 hours</p>
+
+                <div class="card skill-category">
+                    <h3>Mobile Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Android SDK</span>
+                        <span class="skill-tag">Firebase Auth</span>
+                        <span class="skill-tag">Firebase Realtime DB</span>
+                    </div>
+                </div>
+
+                <div class="card skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Retrofit</span>
+                        <span class="skill-tag">Gson</span>
+                        <span class="skill-tag">OpenWeather API</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
-            <p>© 2025 hCoder786. All rights reserved. | Crafted with ❤️ for amazing clients</p>
-        </footer>
-    </div>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    A showcase of successful projects demonstrating expertise across various technologies
+                </p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card project-card">
+                    <h3>HC WhatsApp App</h3>
+                    <p class="project-description">
+                        Android chat application with group and person-to-person chat features. Built with Firebase 
+                        for real-time messaging and user authentication.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Android Studio</span>
+                        <span class="tech-tag">Firebase Authentication</span>
+                        <span class="tech-tag">Firebase Realtime Database</span>
+                        <span class="tech-tag">Android SDK</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>Weather App</h3>
+                    <p class="project-description">
+                        Android weather application that fetches live weather data using OpenWeather API. 
+                        Features current weather conditions and forecasts.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Android Studio</span>
+                        <span class="tech-tag">Retrofit</span>
+                        <span class="tech-tag">Gson</span>
+                        <span class="tech-tag">OpenWeather API</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>College Management CRUD App</h3>
+                    <p class="project-description">
+                        Full-stack application for college management with CRUD operations. Built with React Native 
+                        frontend and Node.js backend with C# and ASP.NET integration.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">ASP.NET</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>Java Chatbot App</h3>
+                    <p class="project-description">
+                        Android chatbot application designed to answer Java-related programming questions. 
+                        Built using Java standard libraries and Android SDK.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Android SDK</span>
+                        <span class="tech-tag">Android Studio</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>Snake Game</h3>
+                    <p class="project-description">
+                        Classic Snake game developed using Python's Tkinter library. Features smooth controls, 
+                        score tracking, and engaging user experience.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Tkinter</span>
+                        <span class="tech-tag">Game Development</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>Image Processing with OpenCV</h3>
+                    <p class="project-description">
+                        Image processing application implementing edge detection and various image effects 
+                        using OpenCV library in Pydroid environment.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Pydroid</span>
+                        <span class="tech-tag">Image Processing</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>Tic Tac Toe Game</h3>
+                    <p class="project-description">
+                        Console-based Tic Tac Toe game where players compete to get three symbols in a row 
+                        on a 3x3 grid. Built with Java 8.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java 8</span>
+                        <span class="tech-tag">Console Application</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>File Handling CRUD System</h3>
+                    <p class="project-description">
+                        Java application to perform CRUD operations on files, including copying content 
+                        from one file to another using file handling techniques.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Java 8</span>
+                        <span class="tech-tag">JDBC</span>
+                        <span class="tech-tag">File Handling</span>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <h3>Shape Generator</h3>
+                    <p class="project-description">
+                        Python application using turtle library to generate various geometric shapes. 
+                        Demonstrates graphics programming and mathematical concepts.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Turtle Graphics</span>
+                        <span class="tech-tag">Mathematics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">
+                    Ready to start your next project? Let's work together to create something amazing.
+                </p>
+            </div>
+
+            <div class="contact-info">
+                <div class="card">
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <span>+91 8219572209</span>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Kumara2262ajaja@gmail.com</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Sunder Nagar, Distt. Mandi (HP)</span>
+                    </div>
+
+                    <p style="margin-top: 2rem; color: var(--muted-foreground);">
+                        <strong>Status:</strong> Fresher - Available for full-time opportunities<br>
+                        <strong>Marital Status:</strong> Married<br>
+                        <strong>Hobbies:</strong> Coding, Creating Applications
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Er. Anil Kumar (HCoder786). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to navigation links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
